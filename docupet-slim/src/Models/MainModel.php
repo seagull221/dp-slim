@@ -8,7 +8,6 @@ class MainModel
         $count = floor(count($numset)/2);
         //get equal bucket width 
         $set = (max($numset) - min($numset)) / $count;
-        //get in asc order
         sort($numset); 
         //set initial values;
         $start = 0;
@@ -35,5 +34,29 @@ class MainModel
         }
 
         return $sorted_set;
+    }
+
+    public static function sortFrequency(Array $numset): Array {
+            $count = floor(count($numset)/2);
+            //determine frequency group size
+            $group = ceil(count($numset) / $count);
+            sort($numset);
+
+            for ($i = 0; $i < $count; $i++) {
+                //start position in array
+                $start = $i * $group;
+                //end position in array
+                $end = ($i + 1) * $group - 1;
+                //have we reached end
+                $end = min($end, count($numset) - 1);
+                //determine number values in this set
+                $length = $end - $start + 1;
+                $values = array_slice($numset, $start, $length);
+                if(!empty($values)) {
+                    $sorted_set[($i + 1)] = $values;
+                }
+            }
+        
+            return $sorted_set;
     }
 }
