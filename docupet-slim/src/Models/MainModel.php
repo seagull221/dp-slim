@@ -11,7 +11,7 @@ class MainModel
         sort($numset); 
         //set initial values;
         $start = 0;
-        $end = $set;
+        $end = $set+1;
         $old_index = 0;
         $max_index = $count - 1;
 
