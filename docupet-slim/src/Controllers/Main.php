@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\MainModel;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
@@ -27,15 +28,13 @@ class Main
             $numset = $this->numset;
         }
 
+        $body = $this->getFormContent() . "<h2>{$params['type']}</h2>";
         if(!empty($params['type']) && $params['type'] == 'Sort Equal Width') {
-            $body = $this->getFormContent();
-            $body .= $params['type'];
-            $body = $this->wrapResponseBody($body);
+            $result = MainModel::sortEqual($numset);
+            $body .= $this->wrapResponseBody("<pre>".print_r($result, true)."</pre>");
             $response->getBody()->write($body);
             return $response->withStatus(200);
         } else if(!empty($params['type']) && $params['type'] == 'Sort by Frequency'){
-            $body = $this->getFormContent();
-            $body .= $params['type'];
             $body = $this->wrapResponseBody($body);
             $response->getBody()->write($body);
             return $response->withStatus(200);
@@ -43,10 +42,6 @@ class Main
             $response->getBody()->write('Bad Input');
             return $response->withStatus(400);            
         }
-    }
-
-    public function equalBuckets() {
-
     }
 
     private function getFormContent(): String {
