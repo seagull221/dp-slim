@@ -21,6 +21,7 @@ $app->add(function (Request $request, RequestHandler $handler) {
 
 return function (App $app) {
     $app->group('', function (RouteCollectorProxy $group) {
+        $group->get('/buckets', [new Main, 'buckets']);
         $group->get('/', [new Main, 'index']);
         $group->map(['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], '/{routes:.+}', function ($request, $response) {
             throw new HttpNotFoundException($request);
