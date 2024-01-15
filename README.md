@@ -7,7 +7,7 @@ Requirements:
     Php     - verion 5.7+
 
 Install: 
-* Clone: `git@github.com:gpomer/docupet-slim.git`
+* Clone: `git@github.com:seagull221/docupet-slim.git`
 * Run `composer install`
 * Start `docker-compose up -d`
 * Browse to: `localhost:9000`
