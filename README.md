@@ -4,10 +4,9 @@
 Requirements:
 
     Docker  - contains a minimal docker container
-    Php     - verion 5.7+
-
+    
 Install: 
-* Clone: `git@github.com:seagull221/docupet-slim.git`
+* Clone: `git@github.com:seagull221/dp-slim.git`
 * Run `composer install`
 * Start `docker-compose up -d`
 * Browse to: `localhost:9000`
